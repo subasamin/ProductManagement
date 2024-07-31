@@ -1,19 +1,16 @@
 package ss17.controller;
 
 import ss17.model.Product;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
-
 import static java.lang.Integer.parseInt;
 
 public class ProductController {
     public static HashMap<Integer, Product> productsMap = new HashMap<>();
-    public static final String FILE_NAME = "src/ss17/Product.csv";
-
+    public static final String FILE_NAME = "src/ss17/controller/Product.csv";
     public static void readFile() {
         try {
             BufferedReader br = new BufferedReader(new FileReader(FILE_NAME));
@@ -21,7 +18,6 @@ public class ProductController {
             List<String> list = new ArrayList<>();
             while ((line = br.readLine()) != null) {
                 list.add(line);
-
             }
             for (int i = 1; i < list.size(); i++) {
                 String[] parts = list.get(i).split(",");
@@ -37,18 +33,17 @@ public class ProductController {
             throw new RuntimeException(e);
         }
     }
-
     public static void writeFile() {
         try {
             BufferedWriter bw = new BufferedWriter(new FileWriter(FILE_NAME));
             bw.append("id,name,price");
             bw.append("\n");
-            for (int i: productsMap.keySet()) {
-                bw.append(Integer.toString(productsMap.get(i).getId()));
+            for (Product product : productsMap.values()) {
+                bw.append(Integer.toString(product.getId()));
                 bw.append(',');
-                bw.append(productsMap.get(i).getName());
+                bw.append(product.getName());
                 bw.append(',');
-                bw.append(Double.toString(productsMap.get(i).getPrice()));
+                bw.append(Double.toString(product.getPrice()));
                 bw.append('\n');
             }
             bw.flush();
@@ -57,44 +52,40 @@ public class ProductController {
             throw new RuntimeException(e);
         }
     }
-
     public static void findProducts() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhap id product can hien thi");
+        System.out.println("Nhập id product cần hiển thị thông tin");
         int id = scanner.nextInt();
         System.out.println(productsMap.get(id));
     }
-
     public static void displayProducts() {
         for (Product product : productsMap.values()) {
             System.out.println(product);
         }
     }
-
     public static void addProduct() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhap thong tin product can them");
+        System.out.println("Nhập thông tin product cần thêm");
         int id;
         do {
-            System.out.println("Nhap id");
+            System.out.println("Nhập id");
             id = scanner.nextInt();
         }
         while (productsMap.containsKey(id));
-        System.out.println("Nhap name product");
+        System.out.println("Nhập name product");
         String name = scanner.next();
-        System.out.println("Nhap price");
+        System.out.println("Nhập price");
         double price = scanner.nextDouble();
         productsMap.put(id, new Product(id, name, price));
-        System.out.println("Da them thanh cong product");
+        System.out.println("Đã thêm thành công product");
     }
-
     public static void removeProduct() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Nhap id product can xoa");
+        System.out.println("Nhập id product cần xoá");
         int id = parseInt(sc.nextLine());
         if (productsMap.containsKey(id)) {
             productsMap.remove(id);
         }
-        System.out.println("Da xoa product voi id la" + id);
+        System.out.println("Đã xoá product với id là " + id);
     }
 }
