@@ -23,10 +23,8 @@ public class Validate {
         Pattern pattern = Pattern.compile(ID_REGEX);
         Matcher matcher = pattern.matcher(String.valueOf(id));
         if (matcher.matches()) {
-//            System.out.println("ID hop le");
             return true;
         } else {
-//            System.out.println("ID khong hop le");
             return false;
         }
     }
@@ -35,10 +33,8 @@ public class Validate {
         Pattern pattern = Pattern.compile(PRICE_REGEX);
         Matcher matcher = pattern.matcher(String.valueOf(price));
         if (matcher.matches()) {
-//            System.out.println("Price hop le");
             return true;
         } else {
-//            System.out.println("Price khong hop le,");
             return false;
         }
     }

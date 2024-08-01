@@ -1,13 +1,11 @@
 package ss17.controller;
 
 import ss17.model.Product;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
-
 import static java.lang.Integer.parseInt;
 import static ss17.controller.Validate.*;
 
