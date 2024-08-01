@@ -1,6 +1,9 @@
 package ss17.view;
+
 import java.util.*;
+
 import static ss17.controller.ProductController.*;
+
 public class ManagerProduct {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
