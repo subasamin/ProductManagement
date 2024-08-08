@@ -39,8 +39,9 @@ public class Main {
         int count2=0;
         for (i = 0; i < books.size(); i++){
             if (books.get(i)instanceof FictionBook){
-                ((FictionBook) books.get(i)).getCategory().equals("vientuong1");
-                count1++;
+                if (((FictionBook) books.get(i)).getCategory().equals("vientuong1")){
+                    count1++;
+                }
                 if(100 > (books.get(i).getPrice())){
                     count2++;
                 }
